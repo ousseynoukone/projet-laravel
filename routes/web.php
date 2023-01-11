@@ -16,15 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('listerprojet');
-});
+
 
 Route::get('/basic', function () {
     return view('basic');
 });
 Route::get('/projets', function () {
     return view('lister');
+});
+Route::get('', function () {
+    return  redirect('/projets');
 });
 
 
