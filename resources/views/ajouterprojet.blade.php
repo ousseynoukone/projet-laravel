@@ -1,18 +1,6 @@
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-
-
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ asset('build/assets/bootstrap.css') }}" rel="stylesheet">
-
-
-    <title>Document</title>
-</head><body>
-
+@extends('layout.app')
+@section('content')
 
 <form method="post">
     @csrf
@@ -36,7 +24,4 @@
   <a href="/projets" class="btn btn-primary col-md-3 offset-4 mt-2">Liste des projets</a>
 </form>
 
-</div>
-</div>
-</body>
-</html>
+@endsection

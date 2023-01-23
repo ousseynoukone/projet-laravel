@@ -1,18 +1,7 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
 
-
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ asset('build/assets/bootstrap.css') }}" rel="stylesheet">
-
-
-    <title>Document</title>
-</head>
-<body class="bg-dark">
-  <div class="container mt-5 ">
+ @extends('layout.app')
+ @section('content')
+ <div class="container mt-5 ">
     <div class="card">
       <div class="card-header bg-dark text-white text-center mt-4">Liste des projets</div>
 <table class="table bg-primary text-white">
@@ -37,7 +26,9 @@
       <td>{{$projet->description}}</td>
       <td>{{$projet->dateDebut}}</td>
       <td>{{$projet->dateFin}}</td>
-      <td><a class="btn btn-dark" href="/details?id={{$projet->id}}" >Details</a> </td>
+
+    <!--  <td><a class="btn btn-dark" href="/details?id={{$projet->id}}" >Details</a> </td> -->
+      <td>  <a class="btn btn-dark" href="{{route('detail.projet', ['id' =>$projet->id])}}">Details</a>   </td>   
 
 
     </tr>
@@ -53,9 +44,6 @@
 
 </div>
 
+@endsection
 
-</body>
-<script src="{{ asset('build/assets/jquery-3.6.0.js') }}"></script>
-<script src="{{ asset('build/assets/bootstrap.js') }}"></script>
 
-</html>

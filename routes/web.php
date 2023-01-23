@@ -31,15 +31,16 @@ Route::get('', function () {
 
 
 Route::get('/projetsajout', function () {
-    return view('ajouterprojet');
+    return view('ajouterprojet');   
 });
 Route::get('/phasesajout', function () {
     return view('phaseajout');
 });
 
 Route::get('/projets',[ProjetController::class,"show"] );
+
 Route::post('/projetsajout',[ProjetController::class,"create"] )->name("ajout");
 
-Route::get('/details',[PhaseController::class,"show"] );
+Route::get('/details',[PhaseController::class,"show"] )->name("detail.projet");
 Route::post('/phasesajout',[PhaseController::class,"create"] )->name("ajoutPhase");
 
