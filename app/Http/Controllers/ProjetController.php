@@ -22,7 +22,7 @@ class ProjetController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-    {
+    {/*
         $p = new Projet();
 
         $p->description=$request->description ;
@@ -31,8 +31,14 @@ class ProjetController extends Controller
         $p->save();
 
         return redirect()->route('ajout');    
+*/
+//Cette technique est plus pertinente quand on insert les donnée pour la premiere fois , l'autre est plus pratique pour faire les mises a jour ! 
+        $input = $request->all();
+        Projet::create($input);
+        return redirect('projetsajout')->with('flash_message','Projet créé');
+    }   
 
-    }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -55,10 +61,13 @@ class ProjetController extends Controller
     {
         //
  
-            $projet=Projet::all();
-            return view('listerprojet',["tabProjet"=>$projet]);
-      
-        }
+            $projets=Projet::all();
+
+
+      //      return view('listerprojet',["tabProjet"=>$projet]);
+      return view('listerprojet',compact('projets') );
+
+    }
 
     /**
      * Show the form for editing the specified resource.

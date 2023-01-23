@@ -28,7 +28,7 @@
   </thead>
   <tbody>
     
-    @foreach ($tabProjet as $projet )
+    @foreach ($projets as $projet )
       
    
     <tr>
