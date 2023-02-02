@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PhaseController;
+use App\Http\Controllers\PhasesController;
 use App\Http\Controllers\ProjetController;
 use App\Models\Projet;
 use Illuminate\Support\Facades\Route;
@@ -21,26 +22,30 @@ use Illuminate\Support\Facades\Route;
 Route::get('/basic', function () {
     return view('basic');
 });
+
+Route::get('', [ProjetController::class,"index"]);
+
+
+
+Route::resource('phases',PhaseController::class);
+Route::resource('projets',ProjetController::class);
+
+
+
+/*
 Route::get('/projets', function () {
     return view('lister');
 });
-Route::get('', function () {
-    return  redirect('/projets');
-});
-
-
-
 Route::get('/projetsajout', function () {
     return view('ajouterprojet');   
 });
-Route::get('/phasesajout', function () {
-    return view('phaseajout');
-});
+
 
 Route::get('/projets',[ProjetController::class,"show"] );
 
 Route::post('/projetsajout',[ProjetController::class,"create"] )->name("ajout");
 
 Route::get('/details',[PhaseController::class,"show"] )->name("detail.projet");
-Route::post('/phasesajout',[PhaseController::class,"create"] )->name("ajoutPhase");
 
+//Route::post('/phasesajout',[PhaseController::class,"create"] )->name("ajoutPhase");
+*/

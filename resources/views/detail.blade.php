@@ -7,6 +7,7 @@
   <thead>
     <tr>
       <th scope="col">N°</th>
+      <th scope="col">id phase</th>
       <th scope="col">Phase</th>
       <th scope="col">Date de debut</th>
       <th scope="col">Date de fin</th>
@@ -14,11 +15,11 @@
     </tr>
   </thead>
   <tbody>
-
   @if (count($tab[0]) > 0)
-  @foreach ($tab[0] as $phase)
+  @foreach ($tab[0] as $index=> $phase)
     <tr>
-      <th scope="row">{{ $phase->id }}</th>
+      <th scope="row">{{$index+=1}}</th>
+      <th scope="row">{{ $phase->idphase }}</th>
       <td>{{ $phase->phase }}</td>
       <td>{{ $phase->dateDebut }}</td>
       <td>{{ $phase->dateFin }}</td>
@@ -32,7 +33,7 @@
 </table>
 
 </div>
-  <a href="/phasesajout?id={{$tab[1]}}" class="btn btn-primary col-md-3 offset-4  mt-2">Ajouter une phase</a>
+<a class="btn btn-primary col-md-3 offset-4  mt-2" href="{{route('phases.create')}}?id={{$tab[1]}}" class="btn btn-primary">Ajouter une phase</a>
 
 <a href="/projets" class="btn btn-primary col-md-3 offset-4  mt-2">Liste des projets</a>
 

@@ -14,8 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::table('phases', function (Blueprint $table) {
-            $table->bigInteger ('idProjet');
-            $table->foreign('idProjet')->references('id')->on('projets')->name('my_foreign_key')->onDelete('cascade');            
+            $table->foreignId('idProjet')->constrained('projets');
+
+
+
+
+            //
         });
     }
 

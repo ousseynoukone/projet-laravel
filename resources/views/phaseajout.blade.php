@@ -13,9 +13,12 @@
     <title>Document</title>
 </head><body>
 
+@foreach ($tab as $p )
 
-<form method="post">
-    @csrf
+  
+@endforeach
+<form action="{{route('phases.store')}}" method="post">
+  @csrf
     <div class="container mt-5">
         <div class="card">
             <div class="card-header text-center ">Ajouter une phase</div>
@@ -31,6 +34,9 @@
     <label for="exampleInputPassword1">Date de fin</label>
     <input type="Date" required class="form-control "  name = "datefin" id="exampleInputPassword1" placeholder="Date de fin de la phase">
   </div>
+  <input hidden type="number" required class="form-control "  name = "idprojet" value="{{$tab[0]}}" id="exampleInputPassword1" placeholder="Date de fin de la phase">
+  <input hidden type="number" required class="form-control "  name = "idphase" value="{{$tab[1]}}" id="exampleInputPassword1" placeholder="Date de fin de la phase">
+
 
   <button type="submit" class="btn btn-primary col-md-3 offset-4 ">Ajouter</button>
   <a href="#" class="btn btn-primary col-md-3 offset-4 mt-2" onclick="history.back()">Liste des phases</a>

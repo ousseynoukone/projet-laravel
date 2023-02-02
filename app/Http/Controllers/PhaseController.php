@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Phase;
+use App\Models\Projet;
 use Illuminate\Http\Request;
 
 class PhaseController extends Controller
@@ -24,18 +25,24 @@ class PhaseController extends Controller
      */
     public function create(Request $request)
     {
-        //
+
         $id = $request->query('id');
+        $cpt = 1 ;
 
-        $p = new Phase();
+        $phase = Phase::where('idprojet', '=', $id)->orderBy('idphase', 'desc')->first();
+        if($phase!=null)
+        {
+            $cpt = $phase['idphase']+1;
 
-        $p->phase=$request->phase ;
-        $p->datedebut=$request->datedebut ;
-        $p->datefin=$request->datefin ;
-        $p->idProjet=$id ;
-        $p->save();
 
-        return redirect('details?id='.$id)  ;   
+        }
+        $tab = array($id,$cpt);
+
+
+
+
+
+        return view('phaseajout',["tab"=>$tab]);   
     }
 
     /**
@@ -47,6 +54,27 @@ class PhaseController extends Controller
     public function store(Request $request)
     {
         //
+                //
+      
+        $input = $request->all();
+        $id = $input['idprojet'];
+                
+      /*  $p = new Phase();
+
+        $p->phase=$request->phase ;
+        $p->datedebut=$request->datedebut ;
+        $p->datefin=$request->datefin ;
+        $p->idProjet=$id ;
+        $p->save();
+        */
+        Phase::create($input);
+
+        return redirect()->route('phases.show', ['phase' => $id]);
+
+
+
+
+        
     }
 
     /**
@@ -55,15 +83,16 @@ class PhaseController extends Controller
      * @param  \App\Models\Phase  $phase
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request )
+    public function show($id)
     {
         //
-        $id = $request->query('id');
 
-        $phase = Phase::where('idProjet', '=', $id)->get();
+        $projet = Projet::find($id);
+        $phases = $projet->phases;
+
 
         $tab=array(
-            $phase,
+            $phases,
             $id);
 
         return view('detail',["tab"=>$tab]);
@@ -102,4 +131,6 @@ class PhaseController extends Controller
     {
         //
     }
+
+
 }

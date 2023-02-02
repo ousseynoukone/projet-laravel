@@ -16,7 +16,7 @@
     </tr>
   </thead>
   <tbody>
-    
+  @if(count($projets)!=0 )
     @foreach ($projets as $projet )
       
    
@@ -27,12 +27,16 @@
       <td>{{$projet->dateDebut}}</td>
       <td>{{$projet->dateFin}}</td>
 
-    <!--  <td><a class="btn btn-dark" href="/details?id={{$projet->id}}" >Details</a> </td> -->
-      <td>  <a class="btn btn-dark" href="{{route('detail.projet', ['id' =>$projet->id])}}">Details</a>   </td>   
+      <td>  <a class="btn btn-dark" href="{{route('phases.show', ['phase' =>$projet->id])}}">Details</a>   </td>   
 
 
     </tr>
     @endforeach
+    @else 
+    <p class="text-center mt-3">Il n'y a pas de projet . </p>
+    @endif
+
+
 
 
 
@@ -40,7 +44,7 @@
 </table>
 
 </div>
-<a href="/projetsajout" class="btn btn-primary col-md-3 offset-4  mt-2">Ajouter un projet</a>
+<a href="{{route('projets.create')}}" class="btn btn-primary col-md-3 offset-4  mt-2">Ajouter un projet</a>
 
 </div>
 

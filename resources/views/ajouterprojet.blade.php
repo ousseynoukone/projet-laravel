@@ -2,7 +2,7 @@
 @extends('layout.app')
 @section('content')
 
-<form method="post">
+<form method="post" action="{{route('projets.store')}}">
     @csrf
     <div class="container mt-5">
         <div class="card">
@@ -21,7 +21,7 @@
   </div>
 
   <button type="submit" class="btn btn-primary col-md-3 offset-4 ">Ajouter</button>
-  <a href="/projets" class="btn btn-primary col-md-3 offset-4 mt-2">Liste des projets</a>
+  <a href="{{route('projets.index')}}" class="btn btn-primary col-md-3 offset-4 mt-2">Liste des projets</a>
 </form>
 
 @endsection

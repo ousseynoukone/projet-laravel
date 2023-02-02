@@ -14,6 +14,12 @@ class ProjetController extends Controller
     public function index()
     {
         //
+        $projets=Projet::all();
+
+
+        //      return view('listerprojet',["tabProjet"=>$projet]);
+        return view('listerprojet',compact('projets') );
+  
     }
 
     /**
@@ -22,20 +28,9 @@ class ProjetController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-    {/*
-        $p = new Projet();
+    {
+        return view('ajouterprojet');
 
-        $p->description=$request->description ;
-        $p->datedebut=$request->datedebut ;
-        $p->datefin=$request->datefin ;
-        $p->save();
-
-        return redirect()->route('ajout');    
-*/
-//Cette technique est plus pertinente quand on insert les donnée pour la premiere fois , l'autre est plus pratique pour faire les mises a jour ! 
-        $input = $request->all();
-        Projet::create($input);
-        return redirect('projetsajout')->with('flash_message','Projet créé');
     }   
 
     
@@ -48,7 +43,20 @@ class ProjetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*
+        $p = new Projet();
+
+        $p->description=$request->description ;
+        $p->datedebut=$request->datedebut ;
+        $p->datefin=$request->datefin ;
+        $p->save();
+
+        return redirect()->route('ajout');    
+*/
+//Cette technique est plus pertinente quand on insert les donnée pour la premiere fois , l'autre est plus pratique pour faire les mises a jour ! 
+        $input = $request->all();
+        Projet::create($input);
+        return redirect()->route('projets.create');
     }
 
     /**
@@ -61,11 +69,6 @@ class ProjetController extends Controller
     {
         //
  
-            $projets=Projet::all();
-
-
-      //      return view('listerprojet',["tabProjet"=>$projet]);
-      return view('listerprojet',compact('projets') );
 
     }
 
